@@ -1,6 +1,6 @@
 from player import *
 
-with open("words.txt", "r") as word_file:
+with open("words_ge_4.txt", "r") as word_file:
     words = frozenset([str(word) for word in word_file.read().split()])
 print(f"{len(words)} words loaded")
 p1 = HumanPlayer("Rinat")
@@ -28,6 +28,7 @@ while (True):
         print(f"{players[current_p_index].name} called a bluff")
         if any([current_string in word for word in words]):
             print(f"bluff call was INCORRECT")
+            print([word for word in words if current_string in word][:20])
             winner = players[past_p_index]
             #print(f"Player {players[current_p_index].name} lost :P")
         else:
