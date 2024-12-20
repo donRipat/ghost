@@ -1,30 +1,13 @@
-class Player:
-    def __init__(self):
-        ...
-
-    def play(self):
-        ...
+from src.interfaces import IPlayer
 
 
-class HumanPlayer(Player):
-    def __init__(self, name):
-        self.name = name
-        ...
+class PrimitiveAI(IPlayer):
+    def __init__(self, name: str | None = None):
+        super().__init__("Dummy" if name is None else name)
 
     def play(self, ss, words):
-        return input()
-
-
-class PrimitiveAI(Player):
-    def __init__(self):
-        self.name = "Dummy"
-
-    def play(self, ss, words):
-        candidates = []
-        for word in words:
-            if ss in word:
-                candidates.append(word)
-        if len(candidates) == 0:
+        candidates = [word for word in words if ss in word]
+        if len(candidates) <= 0:
             return "!"
         chosen_word = ""
         # print(f"candidates={candidates[:50]}")
@@ -48,9 +31,9 @@ class PrimitiveAI(Player):
             neighbor_letter = ss[0]
             move = "<"
         if move == ">":
-            file = "top_last_letters"
+            file = "../../resources/top_last_letters"
         else:
-            file = "top_first_letters"
+            file = "../../resources/top_first_letters"
         with open(file, "r") as fr:
             lines = fr.read().split()
         letter_weight = {}
@@ -63,8 +46,9 @@ class PrimitiveAI(Player):
         weights=[float(x) for x in letter_weight.values()]
         # print(population)
         # print(weights)
-        move += rd.choices(population=population,
-                           weights=weights,
-                           k=1)[0]
+        move += rd.choices(
+            population=population,
+            weights=weights,
+            k=1
+        )[0]
         return move
-
