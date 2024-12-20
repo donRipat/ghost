@@ -32,6 +32,9 @@ class GameRound:
             if self.inp == "":
                 print(f"Make your move, {self.current_player.name}:")
                 continue
+            if self.inp[0] not in self.commands.keys():
+                print(f"Command {self.inp[0]} does not exist")
+                continue
             if self.inp[0] == ">":
                 self.commands[self.inp[0]].execute()
             elif self.inp[0] == "<":
