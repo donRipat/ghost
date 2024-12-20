@@ -1,3 +1,6 @@
+import random as rd
+from config import Top_First_Letters, Top_Last_Letters
+
 from src.interfaces import IPlayer
 
 
@@ -23,7 +26,6 @@ class PrimitiveAI(IPlayer):
         return self.__bluff(ss)
 
     def __bluff(self, ss):
-        import random as rd
         if rd.choice([True, False]):
             neighbor_letter = ss[:-1]
             move = ">"
@@ -31,11 +33,9 @@ class PrimitiveAI(IPlayer):
             neighbor_letter = ss[0]
             move = "<"
         if move == ">":
-            file = "../../resources/top_last_letters"
+            lines = Top_Last_Letters
         else:
-            file = "../../resources/top_first_letters"
-        with open(file, "r") as fr:
-            lines = fr.read().split()
+            lines = Top_First_Letters
         letter_weight = {}
         for line in lines:
             letter, weight = line.split(":")
