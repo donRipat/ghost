@@ -3,7 +3,7 @@ from src.interfaces import IPlayer
 
 class PrimitiveAI(IPlayer):
     def __init__(self, name: str | None = None):
-        self.name = "Dummy" if name is None else name
+        super().__init__("Dummy" if name is None else name)
 
     def play(self, ss, words):
         candidates = [word for word in words if ss in word]
@@ -31,9 +31,9 @@ class PrimitiveAI(IPlayer):
             neighbor_letter = ss[0]
             move = "<"
         if move == ">":
-            file = "../resources/top_last_letters"
+            file = "../../resources/top_last_letters"
         else:
-            file = "../resources/top_first_letters"
+            file = "../../resources/top_first_letters"
         with open(file, "r") as fr:
             lines = fr.read().split()
         letter_weight = {}
