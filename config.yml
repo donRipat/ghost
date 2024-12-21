@@ -1,0 +1,4 @@
+resources:
+  words_ge_4: "src/resources/words_ge_4.txt"
+  top_first_letters: "src/resources/top_first_letters"
+  top_last_letters: "src/resources/top_last_letters"

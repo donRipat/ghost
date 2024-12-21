@@ -6,5 +6,5 @@ class IPlayer(ABC):
         self.name = "DefaultName" if name is None else name
 
     @abstractmethod
-    def play(self, ss: str, words: frozenset[str]):
+    def play(self, ss: str, words: frozenset[str]) -> str:
         pass
