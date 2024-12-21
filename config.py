@@ -2,7 +2,6 @@ import yaml
 
 with open('config.yml', 'r') as file:
     CONFIG = yaml.safe_load(file)
-    print(CONFIG)
 
 with open(CONFIG["resources"]["words_ge_4"], "r") as word_file:
     WORDS = frozenset([str(word) for word in word_file.read().split()])
