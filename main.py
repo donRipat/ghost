@@ -6,15 +6,12 @@ from src.services.players import *
 from src.services import GameRound
 
 
-def main():
-    user_name = input(f"Input your name: ")
-    players = [HumanPlayer(user_name), PrimitiveAI()]
+def start_game(name):
+    players = [HumanPlayer(name), PrimitiveAI()]
 
-    move_order = input(f"Who moves first?\n(0) {players[0].name} (1) {players[1].name} (2) random: ")
-    players = move_order_select(move_order, players)
+    move_order = 2 #input(f"Who moves first?\n(0) {players[0].name} (1) {players[1].name} (2) random: ")
+    return players = move_order_select(move_order, players)
 
-    game = GameRound(WORDS, players)
-    game.start_game()
 
 def move_order_select(move_order: str, players: list[IPlayer]):
     if move_order == '0':
@@ -25,6 +22,3 @@ def move_order_select(move_order: str, players: list[IPlayer]):
         rd.shuffle(players)
         return players
 
-
-if __name__ == "__main__":
-    main()
