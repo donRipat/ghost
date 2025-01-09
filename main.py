@@ -10,7 +10,7 @@ def start_game(name):
     players = [HumanPlayer(name), PrimitiveAI()]
 
     move_order = 2 #input(f"Who moves first?\n(0) {players[0].name} (1) {players[1].name} (2) random: ")
-    return players = move_order_select(move_order, players)
+    return move_order_select(move_order, players)
 
 
 def move_order_select(move_order: str, players: list[IPlayer]):
